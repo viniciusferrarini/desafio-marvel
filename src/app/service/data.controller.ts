@@ -1,27 +1,33 @@
-import { OnInit } from '@angular/core';
-import { Entity } from './entity';
-import { DataService } from './data.service';
+// import { OnInit } from '@angular/core';
+// import { Entity } from './entity';
+// import { DataService } from './data.service';
+// import { CharacterDataContainer } from '../model/character.data.container';
+// import { CharacterDataWrapper } from '../model/character.data.wrapper';
+// import { Character } from '../model/character';
 
-export abstract class DataController<T extends Entity<ID>, ID> implements OnInit { 
+// export abstract class DataController implements OnInit { 
 
-    lista: T[] = [];
+//     lista: Character[] = [];
 
-    constructor(
-        public dataService: DataService<T, ID>,
-        private type: any) {
-    };
+//     constructor(
+//         public dataService: DataService<T, ID>,
+//         private type: any) {
+//     };
 
-    ngOnInit(): void {
-        this.getAll();
-    }
+//     ngOnInit(): void {
+//         this.getAll();
+//     }
 
-    getAll() {
-        this.dataService
-          .get<any[]>()
-          .subscribe((data: any[]) => this.lista = data,
-            error => () => {
-              console.log(error);
-            });
-      }
+//     getAll() {
+//         this.dataService
+//           .get<CharacterDataWrapper>()
+//           .subscribe((data: CharacterDataWrapper) => {
+//             this.lista = data.data.results;
+//             console.log(this.lista);
+//           },
+//           error => () => {
+//             console.log(error);
+//           });
+//       }
 
-}
+// }

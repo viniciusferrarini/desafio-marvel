@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { DataController } from '../service/data.controller';
-import { Character } from './character';
-import { CharacterService } from './character.service';
+import { Component, OnInit } from '@angular/core';
+import { Character } from '../model/character';
+import { CharacterService } from '../service/character.service';
+import { CharacterDataWrapper } from '../model/character.data.wrapper';
 
 @Component({
   moduleId: module.id,
@@ -9,10 +9,23 @@ import { CharacterService } from './character.service';
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.css']
 })
-export class CharacterComponent extends DataController<Character, number> {
+export class CharacterComponent implements OnInit {
 
-  constructor(characterService: CharacterService) {
-    super(characterService, Character);
+  characters: Character[] = [];
+
+  constructor(private characterService: CharacterService) { }
+
+  ngOnInit(): void {
+    this.findAll();
   }
 
+  findAll() {
+    this.characterService.findAll()
+      .subscribe((data: CharacterDataWrapper) => {
+        this.characters = data.data.results;
+      },
+        () => {
+          console.log("deu ruim");
+        });
+  }
 }
