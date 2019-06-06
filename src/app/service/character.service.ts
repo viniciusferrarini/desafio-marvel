@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { CharacterDataWrapper } from '../model/character.data.wrapper';
+import { environment } from "../../environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class CharacterService {
@@ -10,6 +10,10 @@ export class CharacterService {
 
     findAll(): any {
         return this.dataService.get<CharacterDataWrapper>("");
+    }
+
+    findByPage(offset: number): any {
+        return this.dataService.get<CharacterDataWrapper>(environment.apiUrl + "characters?limit=9&offset=" + offset + "&" + environment.apiKey);
     }
 
 }
