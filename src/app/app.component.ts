@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'desafio-marvel';
+  
+  title = 'Desafio Marvel';
+  public loading = false;
+
+  loader() {
+    this.loading = !this.loading;
+    console.log(this.loading);
+  }
+  
 }

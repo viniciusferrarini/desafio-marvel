@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Character } from '../model/character';
 import { CharacterService } from '../service/character.service';
 import { CharacterDataWrapper } from '../model/character.data.wrapper';
+import { NgxLoadingService } from 'ngx-loading';
 
 @Component({
   moduleId: module.id,
@@ -15,10 +16,9 @@ export class CharacterComponent implements OnInit {
   page: number = 1; //Página selecionada atualmente
   totalItems: number = 0; //O número total de registros disponíveis considerando o conjunto de filtros atual
   limit: number = 9; //Define o número de registros por página
-  offset: number = 0; //Número de registros ignorados 
-
-
-  constructor(private characterService: CharacterService) { }
+  offset: number = 0; //Número de registros ignorados
+ 
+  constructor(private characterService: CharacterService, private ngxLoadingService: NgxLoadingService ) { }
 
   ngOnInit(): void {
     this.findCharacters();

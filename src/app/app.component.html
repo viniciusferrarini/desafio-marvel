@@ -1,9 +1,11 @@
 <div class="wrapper">
-  <!-- <app-menu style="min-height: 100vh;"></app-menu> -->
   <div id="content">
-    <!-- <app-nav></app-nav> -->
+    <div class="mb-3">
+      <app-navbar></app-navbar>
+    </div>
     <div class="container">
       <router-outlet></router-outlet>
     </div>
   </div>
+  <ngx-loading [show]="loading" [config]="{ fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
 </div>
