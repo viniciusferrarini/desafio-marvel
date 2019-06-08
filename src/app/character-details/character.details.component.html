@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Character</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{character.name}}</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{getImageUrl(character.thumbnail)}}" class="card-img-top" alt="{{character.name}}" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{character.name}}</h5>
+            <p class="lead">{{character.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-3" *ngIf="comics?.length > 0">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="mb-3">Comics</h4>
+        <div class="row">
+          <div class="col-2" *ngFor="let comic of comics">
+            <a href="javascript: void(0);" (click)="openModal(content, comic, 'Comics')">
+              <img src="{{getImageUrl(comic.thumbnail)}}" class="img-thumbnail" alt="{{comic.title}}" />
+              <h6 style="text-align: center">{{comic.title}}</h6>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="events?.length > 0">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="mb-3">Events</h4>
+        <div class="row">
+          <div class="col-2" *ngFor="let event of events">
+            <a href="javascript: void(0);" (click)="openModal(content, event, 'Events')">
+              <img src="{{getImageUrl(event.thumbnail)}}" class="img-thumbnail" alt="{{event.title}}" />
+              <h6 style="text-align: center">{{event.title}}</h6>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Details Comic and Event -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-4">
+        <figure class="figure">
+          <img [src]="modalThumbnail" class="figure-img img-fluid rounded" alt="{{modalName}}">
+        </figure>
+      </div>
+      <div class="col-8">
+        <h5>{{modalName}}</h5>
+        <p class="lead">
+          {{modalDescription}}
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template>
