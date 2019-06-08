@@ -19,6 +19,7 @@ export class CharacterDetailsComponent implements OnInit {
   id: string = "";
   character: Character = new Character;
   comics: Comic[] = [];
+  loading: boolean = false;
   events: Event[] = [];
   modalTitle: string = "";
   modalName: string = "";
@@ -57,9 +58,11 @@ export class CharacterDetailsComponent implements OnInit {
    * Busca os comics do character pelo seu id  
   */
   findCharacterComics() {
+    this.loading = true;
     this.characterService.findComicsByCharacterId(this.id)
       .subscribe((data: CharacterDataWrapper) => {
         this.comics = data.data.results;
+        this.loading = false;
       }, () => {
         this.toastrService.error("There was an error fetching data from the API!");
       });
@@ -69,9 +72,11 @@ export class CharacterDetailsComponent implements OnInit {
    * Busca os events do character pelo seu id  
   */
  findCharacterEvents() {
+  this.loading = true;
   this.characterService.findEventsByCharacterId(this.id)
     .subscribe((data: CharacterDataWrapper) => {
       this.events = data.data.results;
+      this.loading = false;
     }, () => {
       this.toastrService.error("There was an error fetching data from the API!");
     });

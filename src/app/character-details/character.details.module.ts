@@ -4,6 +4,7 @@ import { CharacterDetailsComponent } from './character.details.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    NgxLoadingModule.forRoot({})
   ],
   bootstrap: [],
   exports: [

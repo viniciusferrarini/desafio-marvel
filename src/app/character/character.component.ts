@@ -18,6 +18,7 @@ export class CharacterComponent implements OnInit {
   totalItems: number = 0; //O número total de registros disponíveis considerando o conjunto de filtros atual
   limit: number = 9; //Define o número de registros por página
   offset: number = 0; //Número de registros ignorados
+  loadingCharacters: boolean = false;
  
   constructor(private characterService: CharacterService, 
               private ngxLoadingService: NgxLoadingService, 
@@ -31,23 +32,29 @@ export class CharacterComponent implements OnInit {
    * Busca os characters com base no offset da paginação
   */
   findCharacters() {
+    this.loadingCharacters = true;
     this.characterService.findByPage(this.offset)
       .subscribe((data: CharacterDataWrapper) => {
         this.characters = data.data.results;
         this.totalItems = data.data.total;
+        this.loadingCharacters = false;
       }, () => {
+        this.loadingCharacters = false;
         this.toastrService.error("There was an error fetching data from the API!");
       });
   }
 
   findCharactersByName(name: string) {
     if(name !== "") {
+      this.loadingCharacters = true;
       this.characterService.findByName(name.toLowerCase(), this.offset)
       .subscribe((data: CharacterDataWrapper) => {
         this.characters = data.data.results;
         this.totalItems = data.data.total;
+        this.loadingCharacters = false;
       },
       () => {
+        this.loadingCharacters = false;
         this.toastrService.error("There was an error fetching data from the API!");
       });
     }
