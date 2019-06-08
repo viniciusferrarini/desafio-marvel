@@ -7,10 +7,14 @@ import { NavbarModule } from './navbar/navbar.module';
 
 import { AppComponent } from './app.component';
 import { CharacterDetailsModule } from './character-details/character.details.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FavoritesModule } from './favorites/favorites.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,7 +22,11 @@ import { CharacterDetailsModule } from './character-details/character.details.mo
     HttpClientModule,
     CharacterModule,
     CharacterDetailsModule,
-    NavbarModule
+    NavbarModule,
+    AngularFontAwesomeModule,
+    FavoritesModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

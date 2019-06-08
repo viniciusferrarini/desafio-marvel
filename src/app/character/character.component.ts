@@ -3,6 +3,7 @@ import { Character } from '../model/character';
 import { CharacterService } from '../service/character.service';
 import { CharacterDataWrapper } from '../model/character.data.wrapper';
 import { NgxLoadingService } from 'ngx-loading';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,9 @@ export class CharacterComponent implements OnInit {
   limit: number = 9; //Define o número de registros por página
   offset: number = 0; //Número de registros ignorados
  
-  constructor(private characterService: CharacterService, private ngxLoadingService: NgxLoadingService ) { }
+  constructor(private characterService: CharacterService, 
+              private ngxLoadingService: NgxLoadingService, 
+              private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.findCharacters();
@@ -32,10 +35,22 @@ export class CharacterComponent implements OnInit {
       .subscribe((data: CharacterDataWrapper) => {
         this.characters = data.data.results;
         this.totalItems = data.data.total;
+      }, () => {
+        this.toastrService.error("There was an error fetching data from the API!");
+      });
+  }
+
+  findCharactersByName(name: string) {
+    if(name !== "") {
+      this.characterService.findByName(name.toLowerCase(), this.offset)
+      .subscribe((data: CharacterDataWrapper) => {
+        this.characters = data.data.results;
+        this.totalItems = data.data.total;
       },
       () => {
-        console.log("deu ruim");
+        this.toastrService.error("There was an error fetching data from the API!");
       });
+    }
   }
 
   /**

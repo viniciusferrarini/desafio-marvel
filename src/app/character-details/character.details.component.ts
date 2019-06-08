@@ -6,6 +6,8 @@ import { Character } from '../model/character';
 import { Thumbnail } from '../model/thumbnail';
 import { Comic } from '../model/comic';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LocalStorageService } from '../service/local-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-character.details',
@@ -26,7 +28,9 @@ export class CharacterDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private characterService: CharacterService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private localStorageService: LocalStorageService,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -44,9 +48,8 @@ export class CharacterDetailsComponent implements OnInit {
     this.characterService.findById(this.id)
       .subscribe((data: CharacterDataWrapper) => {
         this.character = data.data.results[0];
-      },
-      () => {
-        console.log("deu ruim");
+      }, () => {
+        this.toastrService.error("There was an error fetching data from the API!");
       });
   }
 
@@ -57,9 +60,8 @@ export class CharacterDetailsComponent implements OnInit {
     this.characterService.findComicsByCharacterId(this.id)
       .subscribe((data: CharacterDataWrapper) => {
         this.comics = data.data.results;
-      },
-      () => {
-        console.log("deu ruim");
+      }, () => {
+        this.toastrService.error("There was an error fetching data from the API!");
       });
   }
 
@@ -70,9 +72,8 @@ export class CharacterDetailsComponent implements OnInit {
   this.characterService.findEventsByCharacterId(this.id)
     .subscribe((data: CharacterDataWrapper) => {
       this.events = data.data.results;
-    },
-    () => {
-      console.log("deu ruim");
+    }, () => {
+      this.toastrService.error("There was an error fetching data from the API!");
     });
 }
 
@@ -99,6 +100,30 @@ export class CharacterDetailsComponent implements OnInit {
     this.modalDescription = data.description;
     this.modalThumbnail = this.getImageUrl(data.thumbnail);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
+  }
+
+  /**
+   * Verifica se o character esta nos favoritos pelo seu id
+   * @param id 
+   */
+  isFavorite(id: number): boolean {
+    return this.localStorageService.isFavorite(id);
+  }
+
+  /**
+   * Salva o character nos favoritos
+   * @param character
+   */
+  saveFavorite(character: Character){
+    this.localStorageService.saveFavorite(character);
+  }
+
+  /**
+   * Remove o character dos favoritos
+   * @param character
+   */
+  removeFavorite(id: number){
+    this.localStorageService.removeFavorite(id);
   }
 
 }

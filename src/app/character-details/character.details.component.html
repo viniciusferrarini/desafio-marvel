@@ -18,7 +18,14 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">{{character.name}}</h5>
+            <h5 class="card-title">{{character.name}}
+              <a href="javascript: void(0);" (click)="saveFavorite(character)">
+                <i *ngIf="isFavorite(character.id) === false" class="fa fa-star-o"></i>
+              </a>
+              <a href="javascript: void(0);" (click)="removeFavorite(character.id)">
+                <i *ngIf="isFavorite(character.id) === true" class="fa fa-star" style="color: orange"></i>
+              </a>
+            </h5>
             <p class="lead">{{character.description}}</p>
           </div>
         </div>

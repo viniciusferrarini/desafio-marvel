@@ -16,6 +16,10 @@ export class CharacterService {
         return this.dataService.get<CharacterDataWrapper>(environment.apiUrl + "characters?limit=9&offset=" + offset + "&" + environment.apiKey);
     }
 
+    findByName(name: string, offset: number): any {
+        return this.dataService.get<CharacterDataWrapper>(environment.apiUrl + "characters?nameStartsWith=" + name + "&limit=9&offset=" + offset + "&" + environment.apiKey);
+    }
+
     findById(id: string): any {
         return this.dataService.get<CharacterDataWrapper>(environment.apiUrl + "characters/" + id + "?" + environment.apiKey);
     }
