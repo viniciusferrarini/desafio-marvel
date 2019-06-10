@@ -1,13 +1,13 @@
 # Desafio Marvel
 
-Aplicação desenvolvida para realizar consultas na API da Marvel, buscando seus heróis e demais informações.
+Aplicação desenvolvida para realizar requisições na API da Marvel, buscando seus heróis e demais informações.
 
-[https://developer.marvel.com/]
+`https://developer.marvel.com/`
 
-Pré requisitos para a execução da Aplicação:
-1. [Git]: `https://git-scm.com/`
-2. [Angular CLI]: `https://cli.angular.io/`
-3. [NodeJs]: `https://nodejs.org/en/`
+Pré requisitos para a execução da aplicação:
+1. Git: `https://git-scm.com/`
+2. Angular CLI: `https://cli.angular.io/`
+3. NodeJs: `https://nodejs.org/en/`
 
 # Configuração
 
