@@ -11,7 +11,7 @@ Pré requisitos para a execução da aplicação:
 
 # Configuração
 
-Como baixar o projeto através do Git e instalar suas dependências 
+Como clonar o projeto utilizando o Git e instalar suas dependências 
 1. Copie a [URL]: `https://github.com/viniciusferrarini/desafio-marvel.git`
 2. Abra seu terminal de comandos e digite: `git clone https://github.com/viniciusferrarini/desafio-marvel.git`
 3. Após terminar de baixar os arquivos do projeto, acesse o diretório do mesmo utilizando o comando: `cd desafio-marvel`
