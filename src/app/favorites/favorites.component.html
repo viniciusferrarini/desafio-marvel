@@ -1,18 +1,35 @@
 <div class="row">
-  <div class="col-4" *ngFor="let favorite of favorites">
-    <div class="card mb-3">
-      <a href="javascript:void(0)" [routerLink]="['/character/details', favorite.id]">
-        <img src="{{getImageUrl(favorite.thumbnail)}}" class="card-img-top" alt="{{favorite.name}}" />
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">
-          <a href="javascript:void(0)" [routerLink]="['/character/details', favorite.id]">{{favorite.name}} </a>
-          <i *ngIf="isFavorite(favorite.id) === false" class="fa fa-star-o"></i>
-          <a href="javascript: void(0);" (click)="removeFavorite(favorite.id)">
-            <i *ngIf="isFavorite(favorite.id) === true" class="fa fa-star" style="color: orange"></i>
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Favorites</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div *ngIf="favorites.length > 0">
+      <div class="col-4" *ngFor="let favorite of favorites">
+        <div class="card mb-3">
+          <a href="javascript:void(0)" [routerLink]="['/character/details', favorite.id]">
+            <img src="{{getImageUrl(favorite.thumbnail)}}" class="card-img-top" alt="{{favorite.name}}" />
           </a>
-        </h5>
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="javascript:void(0)" [routerLink]="['/character/details', favorite.id]">{{favorite.name}} </a>
+              <i *ngIf="isFavorite(favorite.id) === false" class="fa fa-star-o"></i>
+              <a href="javascript: void(0);" (click)="removeFavorite(favorite.id)">
+                <i *ngIf="isFavorite(favorite.id) === true" class="fa fa-star" style="color: orange"></i>
+              </a>
+            </h5>
+          </div>
+        </div>
       </div>
+    </div>
+    <div *ngIf="favorites.length === 0">
+      <p class="lead text-center">You have not added favorites!</p>
     </div>
   </div>
 </div>
