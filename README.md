@@ -5,9 +5,9 @@ Aplicação desenvolvida para realizar consultas na API da Marvel, buscando seus
 [https://developer.marvel.com/]
 
 Pré requisitos para a execução da Aplicação:
-* [Git]: `https://git-scm.com/`
-* [Angular CLI]: `https://cli.angular.io/`
-* [NodeJs]: `https://nodejs.org/en/`
+1. [Git]: `https://git-scm.com/`
+2. [Angular CLI]: `https://cli.angular.io/`
+3. [NodeJs]: `https://nodejs.org/en/`
 
 # Configuração
 
