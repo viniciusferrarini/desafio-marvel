@@ -20,6 +20,6 @@ Como clonar o projeto utilizando o Git e instalar suas dependências
 # Rodando a aplicação
 
 1. Abra seu terminal de comandos e acesse a pasta do projeto
-2. Após acessar a pasta digite: `ng serve`
+2. Após acessar o diretório digite: `ng serve`
 3. Com o projeto rodando, abra seu navegador web e navegue para a URL: `http://localhost:4200/`
 4. O projeto esta pronto para ser utilizado.
